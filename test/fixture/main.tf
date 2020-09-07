@@ -15,51 +15,32 @@ resource "azurerm_resource_group" "test" {
   location = var.location
 }
 
-# Notes: Must use "= null" for objects until https://github.com/hashicorp/terraform/issues/19898 resolved
 module "network" {
   source = "../.."
 
   depends_on = [azurerm_resource_group.test]
 
+  name                = "1stacctvnet"
+  address_space       = ["10.0.0.0/16"]
   resource_group_name = azurerm_resource_group.test.name
-  location = azurerm_resource_group.test.location
-
-  vnets = [
-    {
-      name          = "1stacctvnet"
-      address_space = ["10.0.0.0/16"]
-      dns_servers   = []
-    },
-    {
-      name          = "2ndacctvnet"
-      address_space = ["10.1.0.0/16"]
-      dns_servers   = []
-    },
-  ]
+  location            = azurerm_resource_group.test.location
 
   subnets = [
     {
-      vnet_name        = "1stacctvnet"
-      name             = "management"
+      subnet_name      = "management"
       address_prefixes = ["10.0.1.0/24"]
-    },
-    {
-      vnet_name        = "2ndacctvnet"
-      name             = "frontend"
-      address_prefixes = ["10.1.1.0/24"]
-    },
-    {
-      vnet_name        = "2ndacctvnet"
-      name             = "backend"
-      address_prefixes = ["10.1.2.0/24"]
     },
   ]
 }
 
-output "vnet_ids" {
-  value = module.network.vnet_ids
+output "vnet_id" {
+  value = module.network.vnet_id
 }
 
-output "vnet_names" {
-  value = module.network.vnet_names
+output "vnet_name" {
+  value = module.network.vnet_name
+}
+
+output "subnet_ids" {
+  value = module.network.subnet_ids
 }
