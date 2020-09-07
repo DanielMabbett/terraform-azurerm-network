@@ -1,6 +1,6 @@
 # terraform-azurerm-network
 
-![Ruby](https://github.com/DanielMabbett/terraform-azurerm-network/workflows/Ruby/badge.svg)
+![terratest](https://github.com/DanielMabbett/terraform-azurerm-network/workflows/terratest/badge.svg)
 
 ## Create a basic network in Azure
 
