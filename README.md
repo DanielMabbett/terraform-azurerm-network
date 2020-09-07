@@ -1,6 +1,6 @@
 # terraform-azurerm-network
 
-(to do add ci)
+![Ruby](https://github.com/DanielMabbett/terraform-azurerm-network/workflows/Ruby/badge.svg)
 
 ## Create a basic network in Azure
 
